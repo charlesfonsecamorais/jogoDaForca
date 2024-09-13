@@ -37,7 +37,7 @@ public class Jogo {
 			if (checarAcerto(palavra, letra) == true) {
 				atualizarTabuleiro(tabuleiro, palavra, letra);
 				exibirTabuleiro(tabuleiro);
-				letrasCertas++;
+				letrasCertas = contarLetrasCertas(tabuleiro, letra, letrasCertas);
 			} else {
 				exibirTabuleiro(tabuleiro);
 				letrasErradas[erros] = letra;
@@ -46,7 +46,7 @@ public class Jogo {
 
 			System.out.println();
 			exibirLetrasErradas(letrasErradas);
-			System.out.print("Erros cometidos: " + erros);
+			System.out.println("Erros cometidos: " + erros);
 			System.out.println();
 
 		}
@@ -149,6 +149,14 @@ public class Jogo {
 			if (palavra[i] == letra)
 				tabuleiro[i] = letra;
 		}
+	}
+	
+	static int contarLetrasCertas(char[] tabuleiro, char letra, int letrasCertas) {
+		for (int i = 0; i < tabuleiro.length; i++) {
+			if (tabuleiro[i] == letra) 
+				letrasCertas++;
+		}
+		return letrasCertas;
 	}
 
 	static void exibirLetrasErradas(char[] letrasErradas) {
